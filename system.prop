@@ -120,7 +120,6 @@ ro.lmk.kill_timeout_ms=15
 # Vendor
 ro.vendor.qti.va_aosp.support=1
 keyguard.no_require_sim=true
-ro.com.android.dataroaming=true
 debug.sf.disable_backpressure=1
 persist.device_config.runtime_native.usap_pool_enabled=true
 ro.control_privapp_permissions=log
