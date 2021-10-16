@@ -43,6 +43,8 @@ TARGET_NO_BOOTLOADER := true
 
 # Kernel
 BOARD_KERNEL_PAGESIZE := 4096
+BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
+SELINUX_IGNORE_NEVERALLOWS := true
 BOARD_KERNEL_BASE          := 0x00000000
 BOARD_RAMDISK_OFFSET       := 0x02000000
 TARGET_KERNEL_CLANG_COMPILE := true
@@ -81,9 +83,6 @@ AB_OTA_PARTITIONS += \
     vendor \
     vendor_boot
 endif
-
-# ANT+
-BOARD_ANT_WIRELESS_DEVICE := "qualcomm-hidl"
 
 # APEX
 DEXPREOPT_GENERATE_APEX_IMAGE := true
@@ -204,31 +203,6 @@ ENABLE_VENDOR_RIL_SERVICE := true
 
 # Sensors
 USE_SENSOR_MULTI_HAL := true
-
-# Sepolicy
-SELINUX_IGNORE_NEVERALLOWS := true
-include device/qcom/sepolicy_vndr/SEPolicy.mk
-SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy/private
-SYSTEM_EXT_PUBLIC_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy/public
-BOARD_VENDOR_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy/vendor
-BOARD_SEPOLICY_M4DEFS += \
-    debugfs_clk=vendor_debugfs_clk \
-    debugfs_ipc=vendor_debugfs_ipc \
-    latency_device=vendor_latency_device \
-    nfc_vendor_data_file=vendor_nfc_vendor_data_file \
-    persist_audio_file=vendor_persist_audio_file \
-    persist_sensors_file=vendor_persist_sensors_file \
-    public_vendor_default_prop=vendor_public_vendor_default_prop \
-    sensors_prop=vendor_sensors_prop \
-    sysfs_boot_adsp=vendor_sysfs_boot_adsp \
-    sysfs_devfreq=vendor_sysfs_devfreq \
-    sysfs_fingerprint=vendor_sysfs_fingerprint \
-    sysfs_graphics=vendor_sysfs_graphics \
-    sysfs_kgsl=vendor_sysfs_kgsl \
-    sysfs_scsi_host=vendor_sysfs_scsi_host \
-    sysfs_ssr=vendor_sysfs_ssr \
-    wcnss_service_exec=vendor_wcnss_service_exec \
-    wifi_vendor_data_file=vendor_wifi_vendor_data_file
     
 # Set boot SPL
 BOOT_SECURITY_PATCH = $(PLATFORM_SECURITY_PATCH)
